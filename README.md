@@ -1,1 +1,1 @@
-# mkwd12-js-05-nodejs-basic
+# Main repository for Node.js basic within the JS track of Qinshift Academy
