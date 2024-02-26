@@ -1,0 +1,16 @@
+{
+  "name": "my-first-nodejs-app",
+  "version": "1.0.0",
+  "description": "My first node app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start-dev": "node app.js"
+  },
+  "author": "Random Person",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
