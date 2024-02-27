@@ -27,9 +27,8 @@ const products = [
 console.log(applyDiscounts(products, 10, 1));
 
 // OUTPUT:
-[
-    { id: 1, name: "Product A", price: 135 }
-]
+{ id: 1, name: "Product A", price: 135 }
+
 
 console.log(applyDiscounts(products, 10));
 
