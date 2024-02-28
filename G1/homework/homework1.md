@@ -1,5 +1,7 @@
 # Filesystem Homework
 
+### Deadline: 10.03.2024
+
 ## Basic Requirements
 
 1. Initialize a new npm project and create an `index.js` file.
