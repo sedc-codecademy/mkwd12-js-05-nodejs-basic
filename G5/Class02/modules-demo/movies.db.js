@@ -1,3 +1,4 @@
+
 const movies = [
     {name: "John Wick", category: "Action"},
     {name: "Harry Potter", category: "Fantasy"},
