@@ -1,4 +1,14 @@
-let colors = require('colors');
+// there are two ways we can import modules into our JS code
+
+// The first way is "require" 
+// This approach works only with commonjs modules (which are default nodejs modules) 
+let colors = require('colors'); 
+
+// The second way is "import"
+// This approach works only with ECMAScript modules
+// Need to add: "type": "module" in package.json file to work with modules
+// import colors from 'colors'; 
+
 
 global.console.log('Yeeey this is my first node app!'); // same as console.log
 const text = '              Yeeey this is my       first node app!                 ';
@@ -20,14 +30,14 @@ console.log(process.cwd()); // Current working directory
 //     process.exit();
 // });
 
-// console.log('START'); // This will exexcute first
-// setTimeout(() => {
-//     console.log('This is inside the setTimeout function'); // This will exexcute third
-// }, 2000);
-// console.log('END'); // This will exexcute second
+console.log('START'); // This will exexcute first
+setTimeout(() => {
+    console.log('This is inside the setTimeout function'); // This will exexcute third
+}, 2000);
+console.log('END'); // This will exexcute second
 
-
-console.log('HELLO' .bgMagenta);
+console.log('HELLO' .magenta); // change text color
+console.log('HELLO' .bgMagenta); // change background color by adding the prefix bg
 
 
 
