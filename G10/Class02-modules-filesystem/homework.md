@@ -13,9 +13,13 @@
 
 ## Bonus (OPTIONAL)
 
-1. Using the task service code from class, create a function called `editTask` that will allow you to edit the task property of the task you have selected (the text of the task)
-2. Add an `owner` property to all the tasks and create function getTasksByOwner which will return all the tasks by that owner's name
-3. Create a `deleteAll` function for the task service which will delete all the tasks currently in `tasks.json`
+**Use the usersService.js file from class**
+1. Create a function called `editUser`. This function will accept two parameters: a number (the id of the user) and user object (name, username and password properties) that will allow you to edit the user you have selected by id. 
+2. Create a function called `deleteUser`. This function will accept one parameter: a number (the id of the user) and will delete the the user you have selected by id. 
+3. Create a `deleteAll` function in the usersService that will delete all the users currently in `users.json`
+4. Refactor the `addUser` function so that the user object you are sending to the function won't contain the id, but just the name, username and password properties and think of a way how you can generate a new id for the added user. The new id shoyld be the id of the last user incremented by one (if the last users id is 10, then the next user's id should be 11)
+4. Import all those functions into your `index.js` file and call them with the relevant data.
+5. Explore all the ways you can use the import syntax and use `import` instead of require.
 
 *Remember everyone that these homeworks are not meant for you to pass Basic Node or anything like that, this is for you to practice and get comfortable with the conceps as we go along, go into the code from yesterday, edit it, change stuff around, test out the file system and all the different functions.*
 
