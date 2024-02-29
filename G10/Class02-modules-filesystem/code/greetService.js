@@ -5,8 +5,9 @@ export const greetUser = (userName) => {
 } 
 
 
+// The "require" syntax
 // const greetUser = (userName) => {
 //     console.log(`Hello ${userName}!`);
 // } 
 
-// module.exports = {greetUser};
+// module.exports = { greetUser };

@@ -1,6 +1,9 @@
+// the import syntax is a new ES6 syntax
+// we must add "type": "module" inside our package.json file so that we can use the import syntax
 import { greetUser, password } from "./greetService.js";
 import fileSystem from 'fs';
-// let {greetUser} = require('./greetService.js');
+// the "require" syntax is used in commonJS modules which are default modules for node.js
+// let { greetUser } = require('./greetService.js');
 import { readUsersFromFile, addUser } from "./usersService.js";
 console.log('We started the app!');
 console.log(password);
@@ -17,7 +20,6 @@ const userToAdd = {
 // addUser(userToAdd);
 
 // const fileName = 'users.json';
-
 // fileSystem.readFile(fileName, 'utf8', (err, data) => {
 //     if(err) {
 //         console.log('Error occured:', err);
@@ -26,5 +28,6 @@ const userToAdd = {
 //     console.log('Content of the file:', JSON.parse(data));
 // });
 
+// use imported function from usersService
 const users = readUsersFromFile();
 console.log(users);
