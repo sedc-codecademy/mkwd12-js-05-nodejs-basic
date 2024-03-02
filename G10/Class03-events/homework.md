@@ -9,7 +9,12 @@ Define a User class with properties like id, name and email.
 Create a custom class (MyEmitter) that extends the EventEmitter class from Node.js's events module, to handle greeting events.
 
 3. Register Event Listeners.\
-Register event listeners for different events related to user actions (register, login, logout). For example, create listeners for userRegister, userLogin, and userLogout.
+Register event listeners for different events related to user actions (register, login, logout).\
+For example, create listeners for userRegister, userLogin, and userLogout.\
+On each event emit, greet the user with the relevant message:
+- Welcome, (name)! Thank you for registering.
+- Hello again, (name)! You've logged in.
+- Goodbye, (name)! You've logged out.
 Example: greetingEmitter.on('userRegister', (user) => {})
 
 4. Simulate User Actions.\
