@@ -1,5 +1,6 @@
 import colors from "colors";
 import { EventEmitter } from "events";
+import fs from "fs";
 
 // USAGE #1
 console.log("Hello from nodejs".green.underline);
@@ -102,3 +103,60 @@ eventEmitter.emit('full_name', "Bob", "Bobski")
  * eventEmmiter.emit('user', 'student')
  * User is role student.
  */
+
+// EVENT LISTENER
+eventEmitter.on("user_info", (userName, role) => {
+    const userInfo = `\n${userName} is role: ${role}`;
+
+    fs.appendFileSync("users.txt", userInfo)
+});
+
+// EVENT TRIGGERER
+eventEmitter.emit("user_info", "BobBobski", "ADMIN");
+eventEmitter.emit("user_info", "LeeJane", "TEACHER");
+
+// #5 Events calling other event
+
+// EVENT LISTENER
+eventEmitter.on("one", () => {
+    console.log('This is event one');
+});
+
+// EVENT LISTENER
+eventEmitter.on("two", () => {
+    console.log('This is event two');
+    // EVENT TRIGGERER
+    eventEmitter.emit('one')
+});
+
+// EVENT TRIGGERER
+eventEmitter.emit('two');
+
+// #6 Events can be chained
+
+// EVENT LISTENERS
+eventEmitter
+.on('first', () => console.log('FIRST'))
+.on('second', () => console.log('SECOND'))
+.on('third', () => console.log('THIRD'))
+
+// EVENT TRIGGERER
+eventEmitter.emit('second');
+eventEmitter.emit('third');
+
+// #7 Same name for events
+
+// EVENT LISTENERS
+eventEmitter
+.on('recording', () => {
+    console.log('First Recording')
+})
+.on('recording', () => {
+    console.log('Second Recording')
+})
+.on('recording', () => {
+    console.log('Third Recording')
+})
+
+// EVENT TRIGGERER
+eventEmitter.emit('recording')
