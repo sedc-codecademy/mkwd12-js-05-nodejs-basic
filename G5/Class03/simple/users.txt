@@ -1,0 +1,15 @@
+
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
+BobBobski is role: ADMIN
+LeeJane is role: TEACHER
