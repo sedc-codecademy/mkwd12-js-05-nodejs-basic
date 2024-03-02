@@ -1,0 +1,17 @@
+[
+  {
+    "id": "04b936b5-0c05-4d5e-b8fd-eea30a1e861c",
+    "text": "First task",
+    "isFinished": false
+  },
+  {
+    "id": "3a0ccbe6-95b1-48b8-8e35-279617dca15e",
+    "text": "Third task",
+    "isFinished": false
+  },
+  {
+    "id": "1e5014df-d3da-4670-86c0-99aa78382ac5",
+    "text": "Third task",
+    "isFinished": false
+  }
+]
