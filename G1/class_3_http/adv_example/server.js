@@ -124,6 +124,21 @@ const server = http.createServer((req, res) => {
 
 		// 	Deleting
 		// To be implemented
+		if (METHOD === 'DELETE') {
+			// Split the URL by the '/' character
+			const urlArr = URL.split('/');
+			// Get the last element of the array which is the review id
+			const reviewId = urlArr[urlArr.length - 1];
+
+			const reviews = JSON.parse(readData());
+
+			const filteredReviews = reviews.filter(review => review.id !== reviewId);
+
+			writeData(JSON.stringify(filteredReviews));
+
+			res.write(`Review with ID:${reviewId} has been deleted.`);
+			res.end();
+		}
 	}
 });
 
@@ -132,3 +147,30 @@ server.listen(PORT, HOSTNAME, () => {
 		`Server has started, and it is listening on http://${HOSTNAME}:${PORT}`
 	);
 });
+
+// Requesting:
+// Methods:
+// GET - Selecting
+//     - params (:id)
+//     - query Params (sort=ASD,sortBy=name)
+// /students - get all students
+// /students/:ID - get student by id
+
+// POST - Creating
+//      - body (json)
+// /students - create student
+
+// PUT - Updating (completely)
+//     - params (:id)
+//	   - body (json)
+// /students - update student
+
+// PATCH - Updating (partially)
+//     - params (:id)
+//	   - body (json)
+// /students - update student
+// /students/status - update student status
+
+// DELETE - Deleting
+// 	   - params (:id)
+// /students - delete student
