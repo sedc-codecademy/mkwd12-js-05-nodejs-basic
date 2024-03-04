@@ -11,9 +11,12 @@ const staticPagePath = path.join(import.meta.dirname, 'public');
 // Creating the express server
 const app = express();
 
+// For parsing the incoming request with JSON payload (body)
+// Formerly known as body-parser
 app.use(express.json());
 
-// This is a static page
+// This is a static page serving middleware, which serves the static pages from the given path
+// In a nutshell, it serves the HTML, CSS, JS, images, etc.
 app.use('/static-page', express.static(staticPagePath));
 
 // This is the main router start-point. /api is commonly used for APIs
