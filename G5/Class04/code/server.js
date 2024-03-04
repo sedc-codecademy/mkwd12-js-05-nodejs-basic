@@ -7,19 +7,47 @@ import http from "http";
 const server = http.createServer((request, response) => {
   // console.log(request);
   const url = request.url;
-  console.log(url);
+  const method = request.method;
 
-  if (url === "/") {
+  console.log("ENDPOINT: ", url);
+  console.log("METHOD: ", method); // POST, PUT, GET, DELETE
+
+  // localhost:3000
+  if (url === "/" && method === "GET") {
     response.setHeader("Content-Type", "text/html");
     response.write("<h1>HTML generated content from the server.</h1>");
-    response.end();
+    return response.end();
   }
 
-  if(url === '/contact'){
+  // localhost:3000/contact
+  if (url === "/contact" && method === "GET") {
     response.setHeader("Content-Type", "text/html");
-    response.write("<h1>This is contact page</h1>")
-    response.end();
+    response.write("<h1>This is contact page</h1>");
+    return response.end();
   }
+  // localhost:3000/todos
+  if (url === "/todos" && method === "GET") {
+    // lets imagine todos is the value from the database
+    const todos = [
+      {
+        id: "1",
+        description: "Walk the dog",
+        isDone: false,
+      },
+      { id: "2", description: "Watch fav. anime", isDone: false },
+    ];
+    
+    response.setHeader('Content-Type', 'application/json')
+    response.write(JSON.stringify(todos));
+    return response.end();
+    
+  }
+
+  // if no match was found we gonna return 404 (not found error) to the client.
+  response.setHeader("Content-Type", "text/html");
+  response.statusCode = 404;
+  response.write("<h1>This page does not exist</h1>");
+  response.end();
 });
 
 /**
