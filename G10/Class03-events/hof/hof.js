@@ -25,7 +25,6 @@ users.forEach(user => {
     console.log(`${user.name} - ${user.age} years old - ${user.occupation}`);
 });
 
-
   
 // *** map ***
 // - executes a provided function once for each array element
@@ -238,3 +237,22 @@ const copyArray = (arr) => {
   }
   return newArr;
 }
+
+
+// reference types (arrays and objects)
+let a1 = [1, 2, 3];
+let a2 = a1; // [1, 2, 3]
+let a3 = a2;
+a2.push(4); 
+// a1 = [1, 2, 3, 4];
+// a2 = [1, 2, 3, 4];
+
+// create new copy
+let a4 = [...a1];
+
+// value types - everything else 
+let n1 = 2;
+let n2 = n1;
+n2 = 4;
+// n1 = 2
+// n2 = 4
