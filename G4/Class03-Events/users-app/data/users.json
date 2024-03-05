@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ab0e1858-a23c-417f-bfe9-8063689ad4da",
+    "firstName": "John",
+    "lastName": "Snow",
+    "age": 1000
+  },
+  {
+    "id": "a9ba3444-a0b5-4b11-a319-c54a1a008ff5",
+    "firstName": "Tosho",
+    "lastName": "Malerot",
+    "age": 1000
+  },
+  {
+    "id": "be48a2cc-5dc7-4c8c-8396-1f3c9469493d",
+    "firstName": "Blazho",
+    "lastName": "Blazhoski",
+    "age": 1000
+  }
+]
