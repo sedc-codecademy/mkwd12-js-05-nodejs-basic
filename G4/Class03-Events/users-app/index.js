@@ -1,13 +1,9 @@
-import { fileURLToPath } from "node:url";
-import path from "node:path";
 import { DataService } from "./src/data.service.js";
 import { User } from "./src/user.model.js";
+import { createPath } from "./utils.js";
+import { loggerEmitter } from "./src/logger.js";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const USERS_PATH = path.join(__dirname, "data", "users.json");
-
-console.log(USERS_PATH);
+const USERS_PATH = createPath(["data", "users.json"]);
 
 //1. Get all users
 const getAllUsers = async () => {
@@ -34,6 +30,8 @@ const createUser = async (firstName, lastName, age) => {
 
   //4. Saving the new array in file system
   await saveUsers(updatedUsers);
+
+  loggerEmitter.emit("create-user", newUser.id);
 };
 
 //4. Get user by id
@@ -61,7 +59,6 @@ const updateUser = async (userId, newFirstName, newLastName) => {
 
   const updatedUsers = users.map(user => {
     if (user.id === userId) {
-      userExists = true;
       return { ...user, firstName: newFirstName, lastName: newLastName };
     } else {
       return user;
@@ -69,21 +66,42 @@ const updateUser = async (userId, newFirstName, newLastName) => {
   });
 
   await saveUsers(updatedUsers);
+
+  loggerEmitter.emit("edit-user", userId);
 };
 
-// Student exercise , finish the below methods
-
 //6. Delete User
+const deleteUser = async userId => {
+  const users = await getAllUsers();
+
+  const updatedUsers = users.filter(user => user.id !== userId);
+
+  if (users.length === updatedUsers.length)
+    throw new Error("Can't delete user! User not found!");
+
+  await saveUsers(updatedUsers);
+
+  loggerEmitter.emit("delete-user", userId);
+};
 
 //7. Delete All Users (nuclear)
+const deleteAllUsers = async () => {
+  await saveUsers([]);
+};
 
 const app = async () => {
   try {
     // await createUser("Risto", "Ristovski", 1000);
     // await createUser("Blazho", "Blazhoski", 1000);
-    // await updateUser("a9ba3444-4b11-a319-c54a1a008ff5", "Tosho", "Malerot");
+    await updateUser(
+      "14ec3384-3b58-4da2-a500-91509b14b386",
+      "Tosho",
+      "Malerot"
+    );
     // const risto = await getUserById("a9ba3444-a0b5-4b11-a319-c54a1a008ff5");
     // console.log("THIS IS RISTO:", risto);
+    await deleteUser("14ec3384-3b58-4da2-a500-91509b14b386");
+    // await deleteAllUsers();
 
     const users = await getAllUsers();
     console.log(users);
