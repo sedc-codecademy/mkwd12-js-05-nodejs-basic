@@ -17,8 +17,8 @@ const studentsPath = path.join(
 // Creating a new router which will help us list all the needed routes for students
 const router = Router();
 
-// Get all students
-//http://localhost:3000/students?group=G1
+// Get all students (or students by group)
+// Query Params example: http://localhost:3000/students?group=G1
 router.get('', (req, res) => {
 	const group = req.query.group;
 

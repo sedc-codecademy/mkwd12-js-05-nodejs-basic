@@ -60,3 +60,25 @@
 2. You can add custom scripts to the `package.json` file to automate tasks such as starting the project, running tests, or building the project for production.
 3. To run a script, use the command `npm run <script-name>`. Replace `<script-name>` with the name of the script you want to run.
 4. You can also run scripts with `npm start` and `npm test` without specifying the script name. These are special scripts that are used to start the project and run tests, respectively.
+
+## Export JSON from Postman
+1. Open Postman and navigate to the collection you want to export.
+2. Click the three dots next to the collection name and select "Export".
+3. Choose the "Collection v2" format and click "Export".
+4. Save the JSON file in the root of your project folder.
+5. The JSON file can be imported into Postman by clicking "Import" and selecting the file.
+
+## Import JSON to Postman
+1. Open Postman and click "Import" in the top left corner.
+2. Select the JSON file you want to import and click "Open".
+3. The collection will be imported and added to the sidebar in Postman.
+4. You can now use the requests and folders from the imported collection.
+
+## Using VS Code debugger
+1. Open the project folder in VS Code.
+2. Click the "Run" tab in the sidebar on the left.
+3. Open terminal and click on the Plus icon dropdown to create a new terminal. Choose JavaScript Debug Terminal.
+4. Run the usual `npm run dev` command to start the project.
+5. Click on any line in the code editor to set a breakpoint.
+6. While the project is running, do an action in Postman where you have a breakpoint set.
+7. The debugger will stop at the breakpoint, and you can inspect the variables and step through the code.
