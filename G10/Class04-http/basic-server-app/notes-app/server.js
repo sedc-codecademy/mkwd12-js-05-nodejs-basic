@@ -80,11 +80,10 @@ const server = http.createServer((request, response) => {
   // ---------------------------------------------------------------------------
   if (method === "PUT") {
     response.setHeader("Content-Type", "text/json");
-    const urlArray = url.split("/"); // localhost:3002/id
-    const id = urlArray.length[urlArray.length - 1];
+    const urlArray = url.split("/");
+    const id = urlArray[urlArray.length - 1];
 
     let body = [];
-
     request.on("data", (chunk) => {
       body.push(chunk);
     });
@@ -95,15 +94,18 @@ const server = http.createServer((request, response) => {
 
       const dbData = readData("db.json");
       const notes = JSON.parse(dbData);
-      const index = notes.findIndex((note) => note.id == id);
+      const index = notes.findIndex((note) => note.id === id);
       notes[index] = {
         ...parsedBody,
         id,
       };
 
-      loggerEmitter.emit(`log', 'The user updated the note with id ${id}`);
+      loggerEmitter.emit(
+        "log",
+        `The user updated note with title: ${notes[index].title}`
+      );
 
-      const stringifiedNotes = JSON.stringify(notes, null);
+      const stringifiedNotes = JSON.stringify(notes, null, 2);
       writeData("db.json", stringifiedNotes);
     });
 
