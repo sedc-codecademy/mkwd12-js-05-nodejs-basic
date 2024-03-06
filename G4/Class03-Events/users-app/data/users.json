@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ab0e1858-a23c-417f-bfe9-8063689ad4da",
+    "firstName": "John",
+    "lastName": "Snow",
+    "age": 1000
+  },
+  {
+    "id": "a9ba3444-a0b5-4b11-a319-c54a1a008ff5",
+    "firstName": "Tosho",
+    "lastName": "Malerot",
+    "age": 1000
+  },
+  {
+    "id": "be48a2cc-5dc7-4c8c-8396-1f3c9469493d",
+    "firstName": "Blazho",
+    "lastName": "Blazhoski",
+    "age": 1000
+  },
+  {
+    "id": "c29852f4-ea48-4a8d-a90f-fa366f62eb12",
+    "firstName": "Blazho",
+    "lastName": "Blazhoski",
+    "age": 1000
+  },
+  {
+    "id": "e1264f8e-dfd6-43ee-a4a7-a6cd628fbad3",
+    "firstName": "Risto",
+    "lastName": "Ristovski",
+    "age": 1000
+  },
+  {
+    "id": "977509d2-b3f1-4bdf-9888-caea6ccf54a6",
+    "firstName": "Risto",
+    "lastName": "Ristovski",
+    "age": 1000
+  },
+  {
+    "id": "554cc19f-a5cd-4029-9288-a67029e5810c",
+    "firstName": "Blazho",
+    "lastName": "Blazhoski",
+    "age": 1000
+  }
+]
