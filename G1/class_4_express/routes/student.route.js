@@ -18,12 +18,21 @@ const studentsPath = path.join(
 const router = Router();
 
 // Get all students
+//http://localhost:3000/students?group=G1
 router.get('', (req, res) => {
+	const group = req.query.group;
+
+	logger.emit('log', `GET all students evoked. Group ${group}`);
+
 	const students = readData(studentsPath);
 
-	logger.emit('log', `GET all students evoked`);
+	if (!group) {
+		res.send(students);
+	}
 
-	res.send(students);
+	const filteredStudents = students.filter(s => s.group === group);
+
+	res.send(filteredStudents);
 });
 
 // Get one student

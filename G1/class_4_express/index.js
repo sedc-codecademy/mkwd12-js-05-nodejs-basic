@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'path';
 import router from './router.const.js';
+import cors from 'cors';
 
 const PORT = 3000;
 const HOSTNAME = 'localhost';
@@ -14,6 +15,9 @@ const app = express();
 // For parsing the incoming request with JSON payload (body)
 // Formerly known as body-parser
 app.use(express.json());
+
+// CORS
+app.use(cors());
 
 // This is a static page serving middleware, which serves the static pages from the given path
 // In a nutshell, it serves the HTML, CSS, JS, images, etc.
