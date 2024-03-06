@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import studentRoutes from './routes/student.route.js';
+import router from './router.const.js';
 
 const PORT = 3000;
 const HOSTNAME = 'localhost';
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use('/static-page', express.static(staticPagePath));
 
 // This is the main router start-point. /api is commonly used for APIs
-app.use('/api', studentRoutes);
+app.use('/api', router);
 
 // Starting the express server
 app.listen(PORT, HOSTNAME, () => {

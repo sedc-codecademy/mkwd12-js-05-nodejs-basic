@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import fs, { readFileSync, writeFileSync } from 'fs';
+import { readData, writeData } from '../services/db.service.js';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import logger from '../services/logger.service.js';
 
 // Path to the students.json file
 // .. means go one level up (to the parent folder)
@@ -17,24 +18,24 @@ const studentsPath = path.join(
 const router = Router();
 
 // Get all students
-router.get('/students', (req, res) => {
-	// 1. Get students from the DB (json)
-	const stringifiedStudents = fs.readFileSync(studentsPath);
+router.get('', (req, res) => {
+	const students = readData(studentsPath);
 
-	// 2. parse the students
-	const students = JSON.parse(stringifiedStudents);
+	logger.emit('log', `GET all students evoked`);
 
-	// 3. Send the students to requester
 	res.send(students);
 });
 
 // Get one student
-router.get('/students/:id', (req, res) => {
+// localhost:3000/api/students/:id
+router.get('/:id', (req, res) => {
 	// 1. get the id (params is an object that contains all the parameters in the URL)
 	const id = req.params.id;
 
+	logger.emit('log', `GET student by id: ${id}`);
+
 	// 2. Get all the students
-	const students = JSON.parse(fs.readFileSync(studentsPath));
+	const students = readData(studentsPath);
 
 	// 3. Find the student
 	const student = students.find(s => s.id === id);
@@ -44,10 +45,12 @@ router.get('/students/:id', (req, res) => {
 });
 
 // Create a new student
-router.post('/students', (req, res) => {
+router.post('', (req, res) => {
 	// 1. Get the student from the request body
 	// req.body is the data that the user sent, already parsed by the body-parser middleware
 	const student = req.body;
+
+	logger.emit('log', `Student created with BODY ${student}`);
 
 	// 2. Add an id to the student
 	const newStudent = {
@@ -56,31 +59,29 @@ router.post('/students', (req, res) => {
 	};
 
 	// 3. Get all the students
-	const students = JSON.parse(fs.readFileSync(studentsPath));
+	const students = readData(studentsPath);
 
 	// 4. Add the new student to the students array
 	students.push(newStudent);
 
-	// 5. Save the students array to the DB (json file)
-	const stringifiedStudents = JSON.stringify(students);
-
-	// 6. Write the students to the file
-	fs.writeFileSync(studentsPath, stringifiedStudents);
+	writeData(studentsPath, students);
 
 	// 7. Send the new student to the requester (client app) with a 201 status code
 	res.status(201).send(newStudent);
 });
 
 // Update a student
-router.put('/students/:id', (req, res) => {
+router.put('/:id', (req, res) => {
 	// 1. Get the id out of the request
 	const id = req.params.id;
 
 	// 2. Get the body out of the request
 	const body = req.body;
 
+	logger.emit('log', `UPDATE student with ID ${id}`);
+
 	// 3. Get the students from the DB
-	const students = JSON.parse(fs.readFileSync(studentsPath));
+	const students = readData(studentsPath);
 
 	// 4. Find the student
 	const index = students.findIndex(s => s.id === id);
@@ -93,16 +94,18 @@ router.put('/students/:id', (req, res) => {
 	};
 
 	// 6. Save in database
-	fs.writeFileSync(studentsPath, JSON.stringify(students));
+	writeData(studentsPath, students);
 
 	// 7. Return response to Client
 	res.send(students[index]);
 });
 
 // Update a student group
-router.patch('/students/:id/group', (req, res) => {
+router.patch('/:id/group', (req, res) => {
 	// 1. Get the ID from the request
 	const id = req.params.id;
+
+	logger.emit('log', `UPDATE student group with ID ${id}`);
 
 	// 2. Get the body from the request
 	const body = req.body;
@@ -111,7 +114,7 @@ router.patch('/students/:id/group', (req, res) => {
 	// }
 
 	// 3. Get the students from the DB
-	const students = JSON.parse(fs.readFileSync(studentsPath));
+	const students = readData(studentsPath);
 
 	// 4. Find the student
 	const index = students.findIndex(s => s.id === id);
@@ -120,25 +123,27 @@ router.patch('/students/:id/group', (req, res) => {
 	students[index].group = body.group;
 
 	// 6. Save students in DB
-	fs.writeFileSync(studentsPath, JSON.stringify(students));
+	writeData(studentsPath, students);
 
 	// 7. Send updated student to client
 	res.send(students[index]);
 });
 
 // Delete a student
-router.delete('/students/:id', (req, res) => {
+router.delete('/:id', (req, res) => {
 	// 1. Get the id from the request params
 	const id = req.params.id;
 
+	logger.emit('log', `DELETE student with ID ${id}`);
+
 	// 2. Get the students from the DB
-	const students = JSON.parse(fs.readFileSync(studentsPath));
+	const students = readData(studentsPath);
 
 	// 3. Remove the student from the array
 	const filteredStudents = students.filter(s => s.id !== id);
 
 	// 4. Save the filtered students in the DB
-	fs.writeFileSync(studentsPath, JSON.stringify(filteredStudents));
+	writeData(studentsPath, filteredStudents);
 
 	// 5. Return response to client
 	res.sendStatus(204);
