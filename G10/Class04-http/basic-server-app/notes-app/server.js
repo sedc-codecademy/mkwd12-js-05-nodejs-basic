@@ -95,7 +95,7 @@ const server = http.createServer((request, response) => {
 
       const dbData = readData("db.json");
       const notes = JSON.parse(dbData);
-      const index = notes.findIndex((note) => note.id === id);
+      const index = notes.findIndex((note) => note.id == id);
       notes[index] = {
         ...parsedBody,
         id,
@@ -120,7 +120,7 @@ const server = http.createServer((request, response) => {
     const dbData = readData("db.json");
     const allNotes = JSON.parse(dbData);
 
-    const notes = allNotes.filter((note) => note.id !== id);
+    const notes = allNotes.filter((note) => note.id != id);
 
     const stringifiedNotes = JSON.stringify(notes);
     writeData("db.json", stringifiedNotes);
