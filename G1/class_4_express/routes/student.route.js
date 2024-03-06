@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import fs from 'fs';
+import fs, { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -72,12 +72,76 @@ router.post('/students', (req, res) => {
 });
 
 // Update a student
-// TBD
+router.put('/students/:id', (req, res) => {
+	// 1. Get the id out of the request
+	const id = req.params.id;
 
-// Update a student status
-// TBD
+	// 2. Get the body out of the request
+	const body = req.body;
+
+	// 3. Get the students from the DB
+	const students = JSON.parse(fs.readFileSync(studentsPath));
+
+	// 4. Find the student
+	const index = students.findIndex(s => s.id === id);
+
+	// 5. Update the student
+	students[index] = {
+		// ...students[index], this belong to a PATCH method, it merges the old the the new student objects
+		...body,
+		id,
+	};
+
+	// 6. Save in database
+	fs.writeFileSync(studentsPath, JSON.stringify(students));
+
+	// 7. Return response to Client
+	res.send(students[index]);
+});
+
+// Update a student group
+router.patch('/students/:id/group', (req, res) => {
+	// 1. Get the ID from the request
+	const id = req.params.id;
+
+	// 2. Get the body from the request
+	const body = req.body;
+	// {
+	// 		group: "G1"
+	// }
+
+	// 3. Get the students from the DB
+	const students = JSON.parse(fs.readFileSync(studentsPath));
+
+	// 4. Find the student
+	const index = students.findIndex(s => s.id === id);
+
+	// 5. Update the student group
+	students[index].group = body.group;
+
+	// 6. Save students in DB
+	fs.writeFileSync(studentsPath, JSON.stringify(students));
+
+	// 7. Send updated student to client
+	res.send(students[index]);
+});
 
 // Delete a student
-// TBD
+router.delete('/students/:id', (req, res) => {
+	// 1. Get the id from the request params
+	const id = req.params.id;
+
+	// 2. Get the students from the DB
+	const students = JSON.parse(fs.readFileSync(studentsPath));
+
+	// 3. Remove the student from the array
+	const filteredStudents = students.filter(s => s.id !== id);
+
+	// 4. Save the filtered students in the DB
+	fs.writeFileSync(studentsPath, JSON.stringify(filteredStudents));
+
+	// 5. Return response to client
+	res.sendStatus(204);
+});
 
 export default router;
