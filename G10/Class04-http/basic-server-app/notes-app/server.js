@@ -43,6 +43,7 @@ const server = http.createServer((request, response) => {
     return;
   }
 
+  // ---------------------------------------------------------------------------
   if (method === "POST") {
     response.setHeader("Content-Type", "text/json");
     // this should contain all the data that is being sent in the request, after all the chunks arrive successfully
@@ -76,6 +77,7 @@ const server = http.createServer((request, response) => {
     });
   }
 
+  // ---------------------------------------------------------------------------
   if (method === "PUT") {
     response.setHeader("Content-Type", "text/json");
     const urlArray = url.split("/"); // localhost:3002/id
@@ -109,6 +111,7 @@ const server = http.createServer((request, response) => {
     response.end();
   }
 
+  // ---------------------------------------------------------------------------
   if (method === "DELETE") {
     response.setHeader("Content-Type", "text/json");
     const urlArray = url.split("/");
@@ -124,7 +127,6 @@ const server = http.createServer((request, response) => {
 
     loggerEmitter.emit("log", `The user deleted the note with id ${id}`);
 
-    // Move the following lines inside the DELETE block
     response.write("Note deleted");
     response.end();
   }
