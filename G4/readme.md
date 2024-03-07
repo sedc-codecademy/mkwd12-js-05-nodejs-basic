@@ -10,5 +10,7 @@
 [Download Node](https://nodejs.org/en)
 
 [Download Git for Windows](https://gitforwindows.org/)
+
 [.gitignore template for Node projects](https://github.com/github/gitignore/blob/main/Node.gitignore)
+
 [Postman](https://www.postman.com/)
