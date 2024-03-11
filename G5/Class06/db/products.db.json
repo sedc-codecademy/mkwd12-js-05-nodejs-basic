@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "name": "Pullover",
+    "color": "White",
+    "size": "M",
+    "material": "Cotton",
+    "price": 15.99
+  },
+  {
+    "id": "2",
+    "name": "Jeans",
+    "color": "Blue",
+    "size": "32x32",
+    "material": "Denim",
+    "price": 29.99
+  },
+  {
+    "id": "3",
+    "name": "Hoodie",
+    "color": "Gray",
+    "size": "L",
+    "material": "Fleece",
+    "price": 39.99
+  },
+  {
+    "id": "123",
+    "name": "Cowboy Hat",
+    "color": "yellow",
+    "size": "XL",
+    "material": "dry straw",
+    "price": 9.5
+  },
+  {
+    "id": "36cd4353-d6eb-42ab-b6ae-bfa7eaeb9df2",
+    "name": "Scarf",
+    "color": "black",
+    "size": "M",
+    "material": "cotton",
+    "price": 10.5
+  },
+  {
+    "id": "73e721be-ef3b-4ae5-802c-94127a0198fc",
+    "name": "Jeans",
+    "color": "blue",
+    "size": "L",
+    "material": "polyester",
+    "price": 20
+  }
+]
