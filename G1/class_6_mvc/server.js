@@ -2,6 +2,7 @@ import express from 'express';
 import router from './consts/router.const.js';
 import cors from 'cors';
 
+// Initialize express
 const app = express();
 
 const PORT = 3000;
