@@ -29,7 +29,23 @@ export default class ProductModel {
 		return product;
 	}
 
-	static async update() {}
+	static async update(id, product) {
+		const products = await this.getAll();
 
-	static async delete() {}
+		const index = products.findIndex(product => product.id === id);
+
+		products[index] = product;
+
+		await DataService.writeData(productsPath, products);
+
+		return product;
+	}
+
+	static async delete(id) {
+		const products = await this.getAll();
+
+		const filteredProducts = products.filter(product => product.id !== id);
+
+		await DataService.writeData(productsPath, filteredProducts);
+	}
 }

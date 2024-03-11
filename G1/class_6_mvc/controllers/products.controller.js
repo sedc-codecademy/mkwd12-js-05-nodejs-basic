@@ -30,4 +30,39 @@ export default class ProductController {
 			res.status(500).send({ message: error.message });
 		}
 	}
+
+	static async updateProduct(req, res) {
+		try {
+			const product = await ProductService.updateProduct(
+				req.params.id,
+				req.body
+			);
+			res.send(product);
+		} catch (error) {
+			res.status(500).send({ message: error.message });
+		}
+	}
+
+	static async updateProductPrice(req, res) {
+		try {
+			const product = await ProductService.updateProductPrice(
+				req.params.id,
+				req.body.price
+			);
+
+			res.send(product);
+		} catch (error) {
+			res.status(500).send({ message: error.message });
+		}
+	}
+
+	static async deleteProduct(req, res) {
+		try {
+			await ProductService.deleteProduct(req.params.id);
+
+			res.sendStatus(204);
+		} catch (error) {
+			res.status(500).send({ message: error.message });
+		}
+	}
 }

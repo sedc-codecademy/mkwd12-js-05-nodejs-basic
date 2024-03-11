@@ -21,4 +21,37 @@ export default class ProductService {
 
 		return createdProduct;
 	}
+
+	static async updateProduct(id, body) {
+		const product = await this.getProduct(id);
+
+		const toBeUpdatedProduct = {
+			...body,
+			id,
+			updatedAt: new Date().toISOString(),
+		};
+
+		const updatedProduct = await ProductModel.update(id, toBeUpdatedProduct);
+
+		return updatedProduct;
+	}
+
+	static async updateProductPrice(id, price) {
+		const product = await this.getProduct(id);
+
+		const toBeUpdatedProduct = {
+			...product,
+			price,
+			id,
+			updatedAt: new Date().toISOString(),
+		};
+
+		const updatedProduct = await ProductModel.update(id, toBeUpdatedProduct);
+
+		return updatedProduct;
+	}
+
+	static deleteProduct(id) {
+		return ProductModel.delete(id);
+	}
 }

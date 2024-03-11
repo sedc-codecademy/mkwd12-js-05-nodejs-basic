@@ -1,12 +1,7 @@
 [
   {
-    "name": "Banana",
-    "id": "7d60ae13-fdc3-4ae8-8329-bcefa2d2153d",
-    "createdAt": "2024-03-11T18:21:46.725Z"
-  },
-  {
-    "name": "Pepers",
+    "name": "Peppers",
     "id": "2532e644-c1c0-4c62-b419-8cac1dd7bb6e",
-    "createdAt": "2024-03-11T18:42:02.237Z"
+    "updatedAt": "2024-03-11T19:22:13.988Z"
   }
 ]
