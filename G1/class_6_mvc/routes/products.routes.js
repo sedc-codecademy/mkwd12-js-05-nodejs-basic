@@ -1,21 +1,11 @@
 import { Router } from 'express';
-import DataService from '../services/data.service.js';
-import path from 'path';
-
-const productsPath = path.join(
-	import.meta.dirname,
-	'..',
-	'data',
-	'products.json'
-);
+import ProductController from '../controllers/products.controller.js';
 
 const router = Router();
 
 // /products
-router.get('', async (req, res) => {
-	const products = await DataService.readData(productsPath);
-
-	res.send(products);
-});
+router.get('', ProductController.getProducts);
+router.get('/:id', ProductController.getProduct);
+router.post('', ProductController.createProduct);
 
 export default router;
