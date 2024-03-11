@@ -16,7 +16,7 @@ const app = express();
 // Formerly known as body-parser
 app.use(express.json());
 
-// CORS
+// CORS setup and configuration
 app.use(cors());
 
 // This is a static page serving middleware, which serves the static pages from the given path

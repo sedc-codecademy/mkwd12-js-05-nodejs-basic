@@ -2,5 +2,5 @@
 
 ## Contact
 
-- Trainer: Gjorge Dimitrov [MAIL]
-- Assistant: Ivan Ivanov [MAIL]
+- Trainer: Gjorge Dimitrov [dimitrov.gjorge@protonmail.com]
+- Assistant: Ivan Ivanov [ivanovv7@protonmail.com]

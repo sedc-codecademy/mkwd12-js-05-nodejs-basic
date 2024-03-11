@@ -1,14 +1,12 @@
-const API_URL = "";
-
-const fetchStudents = async (url) => {
+const API_URL = "http://localhost:3000";
+const fetchData = async (url) => {
   const response = await fetch(url);
-  const result = response.json();
+  const results = await response.json();
 
-  console.log(result);
+  console.log(results);
 };
 
-const btn = document.getElementsByTagName[0];
-
+const btn = document.getElementsByTagName("button")[0];
 btn.addEventListener("click", () => {
-  fetchStudents(API_URL);
+  fetchData(API_URL);
 });
