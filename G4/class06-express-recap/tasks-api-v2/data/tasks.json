@@ -1,0 +1,62 @@
+[
+  {
+    "id": "14875791-0bfa-4867-8813-ce53b421bdfa",
+    "isFinished": true,
+    "text": "First task",
+    "author": "Borche"
+  },
+  {
+    "id": "9daef863-7008-4a63-ae61-71c9c1116113",
+    "isFinished": true,
+    "text": "Second task",
+    "author": "Ivan"
+  },
+  {
+    "id": "b1a5a30a-4e25-4cb3-8175-a018078fff7d",
+    "isFinished": false,
+    "text": "Third task",
+    "author": "Filip"
+  },
+  {
+    "id": "e4fd0095-2f74-4bc6-9423-ce881d930ab8",
+    "isFinished": false,
+    "text": "Fourth Task",
+    "author": "Jovan"
+  },
+  {
+    "id": "161d2a52-43cc-489f-b859-44c6bba4f54d",
+    "isFinished": false,
+    "text": "Fifth Task",
+    "author": "Jovan"
+  },
+  {
+    "id": "149005c8-9d08-4ee0-89a2-6eb6f5e7d5c2",
+    "isFinished": false,
+    "text": "Sixth Task",
+    "author": "Jovan"
+  },
+  {
+    "id": "427a6133-17f7-4bff-b9e8-fbc37ec944db",
+    "isFinished": false,
+    "text": "Seventh Task",
+    "author": "Ivan"
+  },
+  {
+    "id": "07ac394b-a095-45a3-ae5b-1b6f0b80ae31",
+    "isFinished": false,
+    "text": "Eight Task",
+    "author": "Borche"
+  },
+  {
+    "id": "56bc2f4d-384e-4ecd-862e-0c825221a6b1",
+    "isFinished": false,
+    "text": "Ninth Task",
+    "author": "Borche"
+  },
+  {
+    "id": "c8915929-303d-4916-ab57-ca1f23949b13",
+    "isFinished": false,
+    "text": "Tenth Task",
+    "author": "Borche"
+  }
+]
