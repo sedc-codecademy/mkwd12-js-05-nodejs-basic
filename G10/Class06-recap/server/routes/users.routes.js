@@ -64,10 +64,10 @@ router.delete("/users/:id", (req, res) => {
     const userId = req.params.id;
     deleteUser(userId);
     res.status(200).send({ message: "User deleted successfully" });
-    loggerEmitter("log", "Delete user", "Successful");
+    loggerEmitter.emit("log", "Delete user", "Successful");
   } catch (error) {
     res.status(404).send({ error: error.message });
-    loggerEmitter("log", "Delete user", "Unsuccessful");
+    loggerEmitter.emit("log", "Delete user", "Unsuccessful");
   }
 });
 

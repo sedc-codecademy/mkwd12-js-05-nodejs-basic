@@ -15,9 +15,9 @@ export const getUsers = (queryData) => {
   let users = fs.readFileSync(usersFilePath, { encoding: "utf-8" });
   let prsedUsers = JSON.parse(users);
   let validRoles = ["admin", "standard"];
-  if (!validRoles.includes(queryData.role)) {
-    throw new Error("Wrong query parameters");
-  }
+  // if (!validRoles.includes(queryData.role)) {
+  //   throw new Error("Wrong query parameters");
+  // }
   if (queryData?.role && validRoles.includes(queryData.role)) {
     let filteredUsers = prsedUsers.filter(
       (user) => user.role === queryData.role
