@@ -37,6 +37,7 @@ export default class ProductController {
 			res.send(product);
 		} catch (error) {
 			if (error instanceof NotFound) {
+				// return a 404 error response
 				res.status(404).send({ message: error.message });
 			} else {
 				// return a default 500 error response
@@ -54,6 +55,7 @@ export default class ProductController {
 			res.status(201).send(product);
 		} catch (error) {
 			if (error instanceof BadRequest) {
+				// return a 400 error response
 				res.status(400).send({ message: error.message });
 			} else {
 				// return a default 500 error response
@@ -108,8 +110,10 @@ export default class ProductController {
 
 	static async deleteAllProducts(req, res) {
 		try {
+			// deleteAllProducts doesn't return response but still we need to await it, to make sure it doesn't fail
 			await ProductService.deleteAllProducts();
 
+			// return positive status code when all products are deleted
 			res.sendStatus(204);
 		} catch (error) {
 			res.status(500).send({ message: error.message });

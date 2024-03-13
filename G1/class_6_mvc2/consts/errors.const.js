@@ -1,3 +1,5 @@
+// List of all Errors that can be thrown in our application
+
 // 400
 export class BadRequest extends Error {}
 // 403

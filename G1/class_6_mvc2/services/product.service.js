@@ -19,6 +19,7 @@ export default class ProductService {
 	}
 
 	static async createProduct(body) {
+		// We check if the product name already exists
 		const products = await ProductModel.getAll();
 
 		if (
@@ -87,6 +88,7 @@ export default class ProductService {
 	}
 
 	static async deleteAllProducts() {
+		// We don't care how the Model deletes all the products
 		await ProductModel.deleteAll();
 	}
 }
