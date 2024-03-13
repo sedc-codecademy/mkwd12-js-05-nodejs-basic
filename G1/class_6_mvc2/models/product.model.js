@@ -67,4 +67,8 @@ export default class ProductModel {
 		// we use the writeData method to write the new products array to the database
 		await DataService.writeData(productsPath, filteredProducts);
 	}
+
+	static async deleteAll() {
+		await DataService.writeData(productsPath, []);
+	}
 }

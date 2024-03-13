@@ -7,8 +7,6 @@ import ProductModel from '../models/product.model.js';
 // The service doesn't care where we get the data from, which database we use, etc.
 
 export default class ProductService {
-
-
 	static async getProducts() {
 		// Get all products from the Model. We don't care where does the Model get the data from
 		return ProductModel.getAll();
@@ -75,5 +73,9 @@ export default class ProductService {
 	static deleteProduct(id) {
 		// We don't care how the Model deletes the product, we just pass the product id
 		return ProductModel.delete(id);
+	}
+
+	static async deleteAllProducts() {
+		await ProductModel.deleteAll();
 	}
 }

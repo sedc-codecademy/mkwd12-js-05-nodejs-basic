@@ -8,7 +8,6 @@ import ProductService from '../services/product.service.js';
 //   - Negative response (error) if something goes wrong (ex. product can't be found)
 
 export default class ProductController {
-
 	// Each route gets its own controller method
 	// Each method handles request and response
 	// In each method we ALWAYS handle two cases:
@@ -94,6 +93,16 @@ export default class ProductController {
 			res.sendStatus(204);
 		} catch (error) {
 			// return a default 500 error response
+			res.status(500).send({ message: error.message });
+		}
+	}
+
+	static async deleteAllProducts(req, res) {
+		try {
+			await ProductService.deleteAllProducts();
+
+			res.sendStatus(204);
+		} catch (error) {
 			res.status(500).send({ message: error.message });
 		}
 	}
