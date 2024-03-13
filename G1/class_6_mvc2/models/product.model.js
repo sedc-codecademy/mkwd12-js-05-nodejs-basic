@@ -1,5 +1,6 @@
 import DataService from '../services/data.service.js';
 import path from 'path';
+import { NotFound } from '../consts/errors.const.js';
 
 const productsPath = path.join(
 	import.meta.dirname,
@@ -26,7 +27,7 @@ export default class ProductModel {
 		const product = products.find(product => product.id === id);
 
 		if (!product) {
-			throw new Error('Product not found.');
+			throw new NotFound('Product not found.');
 		}
 
 		return product;

@@ -1,3 +1,4 @@
+import { BadRequest, NotFound } from '../consts/errors.const.js';
 import OrderService from '../services/order.service.js';
 
 export default class OrderController {
@@ -17,7 +18,11 @@ export default class OrderController {
 
 			res.send(order);
 		} catch (error) {
-			res.status(500).send({ message: error.message });
+			if (error instanceof NotFound) {
+				res.status(404).send({ message: error.message });
+			} else {
+				res.status(500).send({ message: error.message });
+			}
 		}
 	}
 
@@ -27,7 +32,14 @@ export default class OrderController {
 
 			res.status(201).send(order);
 		} catch (error) {
-			res.status(500).send({ message: error.message });
+			console.log(error);
+			if (error instanceof NotFound) {
+				res.status(404).send({ message: error.message });
+			} else if (error instanceof BadRequest) {
+				res.status(400).send({ message: error.message });
+			} else {
+				res.status(500).send({ message: error.message });
+			}
 		}
 	}
 

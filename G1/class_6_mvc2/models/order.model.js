@@ -1,5 +1,6 @@
 import DataService from '../services/data.service.js';
 import path from 'path';
+import { NotFound } from '../consts/errors.const.js';
 
 const ordersPath = path.join(import.meta.dirname, '..', 'data', 'orders.json');
 
@@ -11,7 +12,13 @@ export default class OrderModel {
 	static async getById(id) {
 		// Promise<Order | undefined>
 		const orders = await this.getAll();
-		return orders.find(order => order.id === id);
+		const order = orders.find(order => order.id === id);
+
+		if (!order) {
+			throw new NotFound('Order not found');
+		}
+
+		return order;
 	}
 
 	static async create(order) {

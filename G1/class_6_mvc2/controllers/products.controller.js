@@ -1,3 +1,4 @@
+import { BadRequest, NotFound } from '../consts/errors.const.js';
 import ProductService from '../services/product.service.js';
 
 // This is the products controller
@@ -35,8 +36,12 @@ export default class ProductController {
 			// return the product to the client
 			res.send(product);
 		} catch (error) {
-			// return a default 500 error response
-			res.status(500).send({ message: error.message });
+			if (error instanceof NotFound) {
+				res.status(404).send({ message: error.message });
+			} else {
+				// return a default 500 error response
+				res.status(500).send({ message: error.message });
+			}
 		}
 	}
 
@@ -48,8 +53,12 @@ export default class ProductController {
 			// return the newly created product
 			res.status(201).send(product);
 		} catch (error) {
-			// return a default 500 error response
-			res.status(500).send({ message: error.message });
+			if (error instanceof BadRequest) {
+				res.status(400).send({ message: error.message });
+			} else {
+				// return a default 500 error response
+				res.status(500).send({ message: error.message });
+			}
 		}
 	}
 
