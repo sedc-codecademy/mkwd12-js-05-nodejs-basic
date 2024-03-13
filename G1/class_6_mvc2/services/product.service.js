@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import ProductModel from '../models/product.model.js';
+import { BadRequest } from '../consts/errors.const.js';
 
 // The service is responsive for all business logic
 // Business logic is the logic that is not generic, yet specific to the application (this implementation)
@@ -18,6 +19,16 @@ export default class ProductService {
 	}
 
 	static async createProduct(body) {
+		const products = await ProductModel.getAll();
+
+		if (
+			products.some(
+				product => product.name.toLowerCase() === body.name.toLowerCase()
+			)
+		) {
+			throw new BadRequest(`Product ${body.name} already exists`);
+		}
+
 		// Here we construct the product object and pass it to the Model to be created in the DataBase
 		const product = {
 			...body,
@@ -33,8 +44,8 @@ export default class ProductService {
 	}
 
 	static async updateProduct(id, body) {
-		// We get the product by id to check if it exists (implementation pending...)
-		const product = await this.getProduct(id);
+		// We get the product by id to check if it exists
+		await this.getProduct(id);
 
 		// We construct the updated product object and pass it to the Model to be updated in the DataBase
 		const toBeUpdatedProduct = {
