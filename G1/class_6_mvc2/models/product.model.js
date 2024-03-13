@@ -23,7 +23,13 @@ export default class ProductModel {
 		const products = await this.getAll();
 
 		// we use the find method to find the product with the given id or return undefined if not found
-		return products.find(product => product.id === id);
+		const product = products.find(product => product.id === id);
+
+		if (!product) {
+			throw new Error('Product not found.');
+		}
+
+		return product;
 	}
 
 	static async create(product) {
