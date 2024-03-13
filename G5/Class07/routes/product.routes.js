@@ -20,7 +20,7 @@ productsRouter.post('/products', async (req, res) => {
  */
 
 productsRouter.get('/products/:id', async (req, res) => {
-    // Call Coresponding controller
+    productController.findProductById(req, res)
 });
 
 export default productsRouter

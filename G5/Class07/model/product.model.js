@@ -1,4 +1,4 @@
-import { readProducts, addProduct } from "../services/products.service.js";
+import { readProducts, addProduct, getProductById } from "../services/products.service.js";
 import { Product } from "../entities/product.entity.js";
 import { v4 as uuid } from "uuid";
 
@@ -33,5 +33,14 @@ export class ProductModel {
     
     // #4
     return id;
+  }
+
+  async getProductById(id) {
+    const product = await getProductById(id)
+
+    if(!product){
+        throw new Error(`Product with id: ${id} is not found`)
+    }
+    return product
   }
 }

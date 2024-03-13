@@ -39,4 +39,16 @@ export class ProductController {
     // #5
     res.send({ message: "Product Created", id: createdProductId });
   }
+
+  async findProductById(req, res) {
+    const id = req.params.id;
+
+    try {
+      const product = await this.productModel.getProductById(id);
+
+      res.send({ message: "Product Found", product: product });
+    } catch (error) {
+        res.status(404).send({message: error.message})
+    }
+  }
 }
