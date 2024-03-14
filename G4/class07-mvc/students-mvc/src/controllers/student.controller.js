@@ -54,4 +54,25 @@ export class StudentController {
       return res.status(400).json({ msg: error.message });
     }
   }
+  //5. Delete student
+  static async deleteStudent(req, res) {
+    try {
+      await StudentModel.deleteStudent(req.params.id);
+
+      return res.sendStatus(204);
+    } catch (error) {
+      return res.status(404).json({ msg: error.message });
+    }
+  }
+
+  //6. Delete all students
+  static async deleteAllStudents(req, res) {
+    try {
+      await StudentModel.deleteAllStudents();
+
+      return res.sendStatus(204);
+    } catch (error) {
+      return res.status(500).json({ msg: error.message });
+    }
+  }
 }
