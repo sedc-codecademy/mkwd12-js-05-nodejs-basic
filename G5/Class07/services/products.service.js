@@ -70,5 +70,5 @@ export const getProductById = async (id) => {
 
   const productFound = products.find((product) => product.id === id);
 
-  return productFound
-}
+  return productFound;
+};
