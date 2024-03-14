@@ -1,0 +1,16 @@
+[
+  {
+    "id": "4b5ccfcc-a5da-425e-87ad-e05ca21a1dc3",
+    "firstName": "Update",
+    "lastName": "Updaterson",
+    "email": "test@gmail.com",
+    "age": 5994
+  },
+  {
+    "id": "e25173e9-498e-4354-9664-553e37dfbdb3",
+    "firstName": "Best",
+    "lastName": "Besterson",
+    "email": "best@gmail.com",
+    "age": 30
+  }
+]
