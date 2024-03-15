@@ -9,7 +9,7 @@ Let's create a simple APP similar to the ones we use for social media. We will h
 ### App init
 
 1. Create a new project using express.
-2. Follow the MVC pattern, and structure the code accordingly, as you see fit. Feel free to experience as long as it is justified, and makes logical sense.
+2. Follow the MVC pattern, and structure the code accordingly, as you see fit. Feel free to еxperiment as long as it is justified, and makes logical sense.
 3. Create 2 json files that will be used as databases. One for users and one for posts. The files should be named `users.json` and `posts.json`.
 4. We will use authentication for the users. You are free to choose between using:
     * Sessions
