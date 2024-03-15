@@ -51,6 +51,8 @@ As a bonus, you can add the following functionalities:
    * If the user is not logged in, the endpoint should return an error.
 3. User can edit ONLY his own posts:
    * If the user is not the owner of the post, the endpoint should return an error.
+4. User can delete ONLY his own posts:
+   * If the user is not the owner of the post, the endpoint should return an error.
 
 ## Before you send it...
 * Don't forget to test your api with Postman.
