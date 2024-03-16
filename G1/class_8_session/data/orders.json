@@ -1,0 +1,16 @@
+[
+  {
+    "productId": "67407235-cc0d-4f59-9b1a-95d3892cf7d4",
+    "userId": "abc",
+    "quantity": 1,
+    "id": "0deefa0b-e798-4377-8f3e-63a2c6548ead",
+    "createdAt": "2024-03-13T19:10:12.739Z"
+  },
+  {
+    "productId": "67407235-cc0d-4f59-9b1a-95d3892cf7d4",
+    "userId": "abc",
+    "quantity": 2,
+    "id": "914f7e05-b841-487f-8cfd-4676a56e5204",
+    "createdAt": "2024-03-13T19:23:37.991Z"
+  }
+]
