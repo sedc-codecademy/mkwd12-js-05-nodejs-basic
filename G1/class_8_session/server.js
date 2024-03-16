@@ -12,6 +12,13 @@ const HOSTNAME = 'localhost';
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+	console.log(
+		`Made API call to ${req.method}: ${req.url} on ${new Date().toISOString()}`
+	);
+	next();
+});
+
 // Routes
 app.use('/api', router);
 

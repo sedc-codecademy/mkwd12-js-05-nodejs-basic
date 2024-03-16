@@ -16,6 +16,7 @@ export default class ProductController {
 	// 2. FAILURE - catch block - when error occurs
 
 	static async getProducts(req, res) {
+		console.log('products', req.session);
 		try {
 			// Get all the products from the service, we don't care how in the controller
 			const products = await ProductService.getProducts();
