@@ -1,0 +1,6 @@
+
+Error: ENOENT: no such file or directory, open 'C:\Users\dimit\Documents\SEDC-2023-2024\NodeJS-Basic\students repo\G5\Class06\db\products2.db.json',
+Error: ENOENT: no such file or directory, open 'C:\Users\dimit\Documents\SEDC-2023-2024\NodeJS-Basic\students repo\G5\Class06\db\products2.db.json', happened at: 1710178397440.
+Error: ENOENT: no such file or directory, open 'C:\Users\dimit\Documents\SEDC-2023-2024\NodeJS-Basic\students repo\G5\Class06\db\products2.db.json', happened at: 1710178423471.
+Error: ENOENT: no such file or directory, open 'C:\Users\dimit\Documents\SEDC-2023-2024\NodeJS-Basic\students repo\G5\Class06\db\products2.db.json', happened at: 1710180858768.
+Error: ENOENT: no such file or directory, open 'C:\Users\dimit\Documents\SEDC-2023-2024\NodeJS-Basic\students repo\G5\Class06\db\products2.db.json', happened at: 1710180923289.
