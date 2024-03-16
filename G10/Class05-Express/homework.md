@@ -1,4 +1,4 @@
-# Class 06 Homework - The Trainer Api
+# Class 05s Homework - The Trainer Api
 
 ## Basic Requirement
 
