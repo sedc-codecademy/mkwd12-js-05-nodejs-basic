@@ -6,14 +6,18 @@ import JwtService from './jwt.service.js';
 
 export default class AuthService {
 	static async register({ username, password }) {
+		// check if user already exists
 		const existingUser = await UserModel.getUserByUsername(username);
 
+		// if user exists throw error
 		if (existingUser) {
 			throw new BadRequest(`User with username: ${username} already exists!`);
 		}
 
+		// hash password using bcrypt
 		const hashedPassword = await bcrypt.hash(password, 10);
 
+		// create new user object. We are saving hashed password to the database
 		const user = {
 			id: uuidv4(),
 			username,
@@ -21,6 +25,7 @@ export default class AuthService {
 			createdAt: new Date().toISOString(),
 		};
 
+		// create user in the database but return only user without password
 		const { password: nonNeededPassword, ...restOfUser } =
 			await UserModel.create(user);
 
@@ -28,24 +33,30 @@ export default class AuthService {
 	}
 
 	static async login({ username, password }) {
+		// check if user exists
 		const existingUser = await UserModel.getUserByUsername(username);
 
+		// if user does not exist throw error
 		if (!existingUser) {
 			throw new BadRequest('Wrong credentials!');
 		}
 
+		// check if password is matching by comparing hashed password from database with password from request (using bcrypt)
 		const arePasswordsMatching = await bcrypt.compare(
 			password,
 			existingUser.password
 		);
 
+		// if passwords are not matching throw error
 		if (!arePasswordsMatching) {
 			throw new BadRequest('Wrong credentials!');
 		}
 
+		// create access and refresh token
 		const token = JwtService.createAccessToken(existingUser.id);
 		const refreshToken = JwtService.createRefreshToken(existingUser.id);
 
+		// return user object without password, access and refresh token
 		return {
 			user: existingUser,
 			token,
