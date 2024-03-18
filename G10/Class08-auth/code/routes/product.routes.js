@@ -1,6 +1,7 @@
 import express from "express";
 import productSession from "../sessions/product.session.js";
 import authSession from "../sessions/auth.session.js";
+import validateAuthSession from "../middleware/auth-session.middleware.js";
 
 const productRouter = express.Router();
 
@@ -35,9 +36,9 @@ productRouter.post("/login", authSession, (req, res) => {
       user: username,
       isLoggedIn: true,
     };
-    res.status(200).send({ message: "Logged in successfully" });
+    res.status(200).send({ message: "Logged in successfully." });
   } else {
-    res.status(401).send({ message: "Invalid credentials" });
+    res.status(403).send({ message: "Invalid credentials" });
   }
 });
 
@@ -45,6 +46,7 @@ productRouter.get(
   "/products-premium",
   authSession,
   productSession,
+  validateAuthSession,
   (req, res) => {
     console.log(req.session);
 
