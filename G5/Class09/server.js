@@ -1,5 +1,6 @@
 import express from "express";
 import authRouter from "./routes/auth.routes.js";
+import productRouter from "./routes/products.routes.js";
 
 const server = express();
 server.use(express.json());
@@ -12,6 +13,7 @@ server.get("/", (req, res) => {
 });
 
 server.use(authRouter);
+server.use(productRouter);
 
 server.listen(PORT, HOST, () => {
   console.log(`Server is up and running on host: ${HOST} and port: ${PORT}`);
