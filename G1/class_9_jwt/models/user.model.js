@@ -8,6 +8,11 @@ export default class UserModel {
 		return DataService.readData(usersPath);
 	}
 
+	static async getUserById(id) {
+		const users = await this.getAll();
+		return users.find(user => user.id === id);
+	}
+
 	static async getUserByUsername(username) {
 		const users = await this.getAll();
 		return users.find(user => user.username === username);
