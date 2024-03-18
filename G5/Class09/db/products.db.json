@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Pullover",
+    "color": "White",
+    "size": "M",
+    "material": "Cotton",
+    "price": 15.99
+  },
+  {
+    "id": "2",
+    "name": "Jeans",
+    "color": "Blue",
+    "size": "32x32",
+    "material": "Denim",
+    "price": 29.99
+  },
+  {
+    "id": "3",
+    "name": "Hoodie",
+    "color": "Gray",
+    "size": "L",
+    "material": "Fleece",
+    "price": 39.99
+  }
+]
