@@ -8,7 +8,7 @@ const router = Router();
 
 // /api
 router.use('/products', productsRouter);
-router.use('/orders',  ordersRouter);
+router.use('/orders', ordersRouter);
 router.use('/auth', authRouter);
 
 // authSession is a middleware that enables usage of session on these routes.
