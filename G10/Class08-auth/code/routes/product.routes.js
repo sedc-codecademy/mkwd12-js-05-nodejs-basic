@@ -10,19 +10,6 @@ productRouter.get("/", productSession, (req, res) => {
   res.send("<h1>Default page</h1>");
 });
 
-productRouter.get("/products", productSession, (req, res) => {
-  const session = req.session;
-  console.log("SESSION", session);
-
-  console.log(session.greetings);
-
-  const products = [
-    { id: "1", name: "iphone 13 pro", price: 800 },
-    { id: "2", name: "smart watch", price: 250 },
-  ];
-  res.send(products);
-});
-
 productRouter.post("/login", authSession, (req, res) => {
   const user = {
     username: "jillwayne",
@@ -40,6 +27,19 @@ productRouter.post("/login", authSession, (req, res) => {
   } else {
     res.status(403).send({ message: "Invalid credentials" });
   }
+});
+
+productRouter.get("/products", productSession, (req, res) => {
+  const session = req.session;
+  console.log("SESSION", session);
+
+  console.log(session.greetings);
+
+  const products = [
+    { id: "1", name: "iphone 13 pro", price: 800 },
+    { id: "2", name: "smart watch", price: 250 },
+  ];
+  res.send(products);
 });
 
 productRouter.get(
