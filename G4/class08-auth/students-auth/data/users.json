@@ -1,0 +1,16 @@
+[
+  {
+    "id": "da4de954-f83e-446b-832e-c58a1826f8bd",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@gmail.com",
+    "password": "$2a$08$Qykls.4Bd9S5jCT9PSLClOUoiRVqp1fwJl87AZ1XvseJj/l4a9Cje"
+  },
+  {
+    "id": "5486c6c2-bf9d-403d-8fa5-36c04743c457",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john2@gmail.com",
+    "password": "$2a$08$15rb/Nmco5y5cN0h0g5v1eymjFH0ducB/dMkXrD5MgIf2vMVVz7.a"
+  }
+]
