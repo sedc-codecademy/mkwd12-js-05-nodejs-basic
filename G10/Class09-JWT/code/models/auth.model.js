@@ -58,4 +58,42 @@ export default class AuthModel {
 
     return userWithoutPassword;
   }
+
+  static async saveRefreshToken(userId, refreshToken) {
+    const users = await this.getAll();
+
+    const updatedUsers = users.map((user) => {
+      if (user.id === userId) {
+        // Initialize refreshTokens array if it doesn't exist
+        if (!user.refreshTokens) {
+          user.refreshTokens = [];
+        }
+        user.refreshTokens.push(refreshToken);
+        console.log(user.refreshTokens);
+        return user;
+      }
+      return user;
+    });
+
+    await DataService.writeData(usersPath, updatedUsers);
+  }
+
+  static async deleteRefreshToken(userId, refreshToken) {
+    const users = await this.getAll();
+
+    const updatedUsers = users.map((user) => {
+      if (user.id === userId) {
+        //Used for logout all functionality
+        user.refreshTokens = [];
+        user.refreshTokens = user.refreshTokens.filter((token) => {
+          if (token !== refreshToken) return true;
+          return false;
+        });
+        return user;
+      }
+      return user;
+    });
+
+    await DataService.writeData(usersPath, updatedUsers);
+  }
 }
