@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 
 import { User } from "../entities/user.entity.js";
 import { addUser, readUsers } from "../services/fs.service.js";
+import { generateToken } from "../services/jwt.service.js";
 
 export class AuthModel {
   async register(firstName, lastName, email, password, permission) {
@@ -33,7 +34,27 @@ export class AuthModel {
     }
   }
 
-  async login() {}
+  async login(email, password) {
+    const users = await readUsers();
+    const user = users.find((u) => u.email === email);
 
-  async logout() {}
+    if (!user) {
+      throw new Error(`User with email: ${email} does not exist.`);
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new Error("Invalid password.");
+    }
+
+    // create access token
+    const accessToken = generateToken(user);
+
+    return accessToken;
+  }
+
+  async logout() {
+    return "Logout Successfull";
+  }
 }

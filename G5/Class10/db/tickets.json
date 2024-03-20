@@ -1,3 +1,16 @@
 [
-  
+  {
+    "id": "579d4f94-cb1d-4bae-99f4-63068c34bfb3",
+    "title": "Implement the header in the app",
+    "description": "Use the new design from figma to re-implement the header",
+    "status": "PENDING",
+    "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
+  },
+  {
+    "id": "c4a503dd-1409-417b-bce3-251fdc657495",
+    "title": "Install new dependencies",
+    "description": "Install new deps. in the project",
+    "status": "PENDING",
+    "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
+  }
 ]

@@ -10,9 +10,13 @@ authRouter.post("/register", async (req, res) => {
 });
 
 // /auth/login
-authRouter.post("/login", async (req, res) => {});
+authRouter.post("/login", async (req, res) => {
+  await authController.loginController(req, res);
+});
 
 // /auth/logout
-authRouter.post("/logout", (req, res) => {});
+authRouter.post("/logout", async (req, res) => {
+  await authController.logoutController(req, res);
+});
 
 export default authRouter;
