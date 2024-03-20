@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Products</title>
+	</head>
+	<body>
+		<!-- this is how we include templates in our code, it's replaced with actual HTML wherever we place it -->
+		<%- include('./templates/header.ejs') %>
+		<h2>Products</h2>
+
+		<ol>
+			<% for (let product of products) { %>
+			<li><%= product.name %></li>
+			<% } %>
+		</ol>
+	</body>
+</html>

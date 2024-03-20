@@ -56,7 +56,6 @@ export default class AuthService {
 		const token = JwtService.createAccessToken(existingUser.id);
 		const refreshToken = JwtService.createRefreshToken(existingUser.id);
 
-		// save refresh token to the database (within the user object)
 		await UserModel.saveRefreshToken(existingUser.id, refreshToken);
 
 		// return user object without password, access and refresh token
@@ -68,49 +67,37 @@ export default class AuthService {
 	}
 
 	static async refreshToken(refreshToken) {
-		// 1. Verify refresh token
 		const { userId } = JwtService.verifyRefreshToken(refreshToken);
 
-		// 2. Get user from the database
 		const user = await UserModel.getUserById(userId);
 
-		// 3. Throw error if user not found
 		if (!user) {
 			throw new BadRequest('User not found.');
 		}
 
-		// 4. Check if refresh token is in the user object in the DB (if not throw error)
 		await UserModel.checkRefreshToken(userId, refreshToken);
 
-		// 5. Delete old refresh token from the user object in the DB (to prevent multiple refresh tokens)
 		await UserModel.deleteRefreshToken(userId, refreshToken);
 
-		// 6. Create new tokens (Access Token + Refresh Token)
+		// 1. Create new tokens (Access Token + Refresh Token)
 		const token = JwtService.createAccessToken(userId);
 		const newRefreshToken = JwtService.createRefreshToken(userId);
 
-		// 7. Save new refresh token to the user object in the DB
-		await UserModel.saveRefreshToken(userId, newRefreshToken);
+		await UserModel.saveRefreshToken(userId, refreshToken);
 
-		// 8. Return new tokens
-		// Not the FE can use the new ACCESS token to automatically login the user.
-		// The refresh token is used to get a new access token when this one expires.
 		return {
 			token,
-			refreshToken: newRefreshToken,
+			refreshToken,
 		};
 	}
 
 	static async logout(refreshToken) {
-		// 1. Verify refresh token
 		const { userId } = JwtService.verifyRefreshToken(refreshToken);
 
-		// 2. Throw error if user not found
 		if (!userId) {
-			throw new BadRequest(`Something went wrong`);
+			throw new BadRequest(`Something wen't wrong`);
 		}
 
-		// 3. Delete refresh token from the user object in the DB
 		await UserModel.deleteRefreshToken(userId, refreshToken);
 	}
 }

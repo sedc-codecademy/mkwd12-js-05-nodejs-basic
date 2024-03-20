@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Home page</title>
+	</head>
+	<body>
+		<%- include('./templates/header.ejs') %>
+		<br />
+		<% console.log("Hello from BE") %>
+		<br />
+		<% const pages = ['products', 'orders'] %>
+
+		<nav>
+			<h2>Pages:</h2>
+			<ol>
+				<% for (let page of pages) { %>
+				<li>
+					<a href="#"><%= page %></a>
+				</li>
+				<% } %>
+			</ol>
+		</nav>
+
+		<script>
+			console.log('Hello from BE inside script');
+		</script>
+	</body>
+</html>

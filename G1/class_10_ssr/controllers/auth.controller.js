@@ -40,8 +40,6 @@ export default class AuthController {
 
 	static async refreshToken(req, res) {
 		try {
-			// req.body:
-			// refreshToken: <refresh_token>
 			const response = await AuthService.refreshToken(req.body.refreshToken);
 
 			res.send(response);
@@ -52,8 +50,6 @@ export default class AuthController {
 
 	static async logout(req, res) {
 		try {
-			// req.body:
-			// refreshToken: <refresh_token>
 			await AuthService.logout(req.body.refreshToken);
 
 			res.sendStatus(204);
