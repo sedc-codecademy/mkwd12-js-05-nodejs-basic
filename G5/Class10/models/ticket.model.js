@@ -16,9 +16,9 @@ export class TicketModel {
     }
   }
 
-  async read() {
+  async read(status) {
     try {
-      const tickets = await readTickets();
+      const tickets = await readTickets(status);
       return tickets;
     } catch (error) {
       throw new Error("Error reading tickets");
