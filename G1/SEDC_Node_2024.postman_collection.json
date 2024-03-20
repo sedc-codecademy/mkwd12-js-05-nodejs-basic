@@ -398,8 +398,25 @@
 						{
 							"name": "Get order by user ID",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
 								"url": {
 									"raw": "http://localhost:3000/api/orders/user/:userId",
 									"protocol": "http",
@@ -637,7 +654,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"username\": \"ivo.kostovski4@gmail.com\",\n    \"password\": \"Password123\"\n}",
+									"raw": "{\n    \"username\": \"ivo.kostovski@gmail.com\",\n    \"password\": \"Password123\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -691,10 +708,49 @@
 							"response": []
 						},
 						{
+							"name": "Refresh token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YWI1M2NlYS01MDUwLTQzZjYtYWJkMS1kZjY1Yzg4NjAwMjciLCJpYXQiOjE3MTA5NTg4NjAsImV4cCI6MTcxMTU2MzY2MH0.vkGw2am4A6FgNvHcBmOUZogMSLInImISUYR9Jh2A-ww\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/auth/refresh-token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Logout",
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0YWI1M2NlYS01MDUwLTQzZjYtYWJkMS1kZjY1Yzg4NjAwMjciLCJpYXQiOjE3MTA5NTg4NjAsImV4cCI6MTcxMTU2MzY2MH0.vkGw2am4A6FgNvHcBmOUZogMSLInImISUYR9Jh2A-ww\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:3000/api/auth/logout",
 									"protocol": "http",
