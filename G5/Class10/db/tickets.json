@@ -12,5 +12,33 @@
     "description": "Install new deps. in the project",
     "status": "PENDING",
     "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
+  },
+  {
+    "id": "8f390c68-3273-40f9-bf6e-939102b69324",
+    "title": "Init new project",
+    "description": "Init project",
+    "status": "PENDING",
+    "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
+  },
+  {
+    "id": "a1116147-8c21-4462-ab81-384d5d7f6214",
+    "title": "Implement the new component",
+    "description": "New component",
+    "status": "PENDING",
+    "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
+  },
+  {
+    "id": "caafd796-6992-4149-9467-b5fe7995e8e8",
+    "title": "Some task in progress",
+    "description": "New component",
+    "status": "IN_PROGRESS",
+    "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
+  },
+  {
+    "id": "4ed03e92-f823-4c56-bf0e-4da1bc5ba3f3",
+    "title": "Drop the database",
+    "description": "New component",
+    "status": "IN_PROGRESS",
+    "assigneeId": "399916cc-7817-4d4f-b2a6-d1a199437984"
   }
 ]

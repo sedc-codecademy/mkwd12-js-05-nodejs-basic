@@ -30,8 +30,13 @@ export class TicketController {
   }
 
   async readController(req, res) {
+    // key=value PAIR ?KEY=VALUE
+
+    // console.log(req.query);
+    const query = req.query;
+    console.log(query);
     try {
-      const tickets = await this.ticketModel.read();
+      const tickets = await this.ticketModel.read(query.status);
       res.send(tickets);
     } catch (error) {
       res.status(400).send({ message: error.message });

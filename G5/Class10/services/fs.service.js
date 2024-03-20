@@ -24,8 +24,16 @@ export const addUser = async (user) => {
 };
 
 // Ticket related services
-export const readTickets = async () => {
+export const readTickets = async (status) => {
   const tickets = await readFile("./db/tickets.json");
+
+  if (status) {
+    const filteredTickets = tickets.filter(
+      (ticket) => ticket.status === status
+    );
+
+    return filteredTickets;
+  }
 
   return tickets;
 };
