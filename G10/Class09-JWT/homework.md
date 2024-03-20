@@ -9,7 +9,7 @@
   - The user should have id, email, password, and role (Admin || Standard).
 - Create "Post" entity that will serve as a factory class out of which you will instantiate posts
 
-  - The post should have id, title, body, tags (array of keywords - topics to which the posts relates to: gaming, healthcare, hobbies, pets etc.)
+  - The post should have id, title, body, tags (array of keywords - topics to which the posts relates to: gaming, healthcare, hobbies, pets etc.).
 
 - Implement auth using JWT (only access token) and make all the /posts routes only accessible by the users who are successfully authenticated (logged in) and own a valid access token
 
