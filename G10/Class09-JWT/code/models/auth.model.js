@@ -83,8 +83,10 @@ export default class AuthModel {
 
     const updatedUsers = users.map((user) => {
       if (user.id === userId) {
-        //Used for logout all functionality
-        user.refreshTokens = [];
+        //Used for removing all refresh tokens
+        // user.refreshTokens = [];
+
+        // remove only the specific refresh token
         user.refreshTokens = user.refreshTokens.filter((token) => {
           if (token !== refreshToken) return true;
           return false;
