@@ -38,6 +38,16 @@ export default class AuthController {
 		}
 	}
 
+	static async refreshToken(req, res) {
+		try {
+			const response = await AuthService.refreshToken(req.body.refreshToken);
+
+			res.send(response);
+		} catch (error) {
+			res.status(500).send({ message: error.message });
+		}
+	}
+
 	static async logout(req, res) {
 		try {
 		} catch (error) {

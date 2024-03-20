@@ -16,4 +16,8 @@ export default class JwtService {
 	static verifyAccessToken(token) {
 		return jwt.verify(token, 'super_secret_access_key');
 	}
+
+	static verifyRefreshToken(token) {
+		return jwt.verify(token, 'super_secret_refresh_key');
+	}
 }

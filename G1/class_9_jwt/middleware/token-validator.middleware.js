@@ -8,6 +8,8 @@ const tokenValidator = (req, res, next) => {
 		// authorization is the default header name for JWT token
 		const authHeader = req.headers.authorization;
 
+		console.log('TOKEN:', authHeader);
+
 		// 2. Check if there is value
 		// If there is no value, then the user is not authenticated
 		if (!authHeader) {

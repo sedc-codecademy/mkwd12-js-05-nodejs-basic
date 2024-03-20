@@ -56,9 +56,36 @@ export default class AuthService {
 		const token = JwtService.createAccessToken(existingUser.id);
 		const refreshToken = JwtService.createRefreshToken(existingUser.id);
 
+		await UserModel.saveRefreshToken(existingUser.id, refreshToken);
+
 		// return user object without password, access and refresh token
 		return {
 			user: existingUser,
+			token,
+			refreshToken,
+		};
+	}
+
+	static async refreshToken(refreshToken) {
+		const { userId } = JwtService.verifyRefreshToken(refreshToken);
+
+		const user = await UserModel.getUserById(userId);
+
+		if (!user) {
+			throw new BadRequest('User not found.');
+		}
+
+		await UserModel.checkRefreshToken(userId, refreshToken);
+
+		await UserModel.deleteRefreshToken(userId, refreshToken);
+
+		// 1. Create new tokens (Access Token + Refresh Token)
+		const token = JwtService.createAccessToken(userId);
+		const newRefreshToken = JwtService.createRefreshToken(userId);
+
+		await UserModel.saveRefreshToken(userId, refreshToken);
+
+		return {
 			token,
 			refreshToken,
 		};
