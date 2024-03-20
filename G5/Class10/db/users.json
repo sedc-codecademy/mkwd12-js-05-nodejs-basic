@@ -1,3 +1,18 @@
 [
-  
+  {
+    "id": "399916cc-7817-4d4f-b2a6-d1a199437984",
+    "firstName": "Bob",
+    "lastName": "Bobski",
+    "email": "bob@mail.com",
+    "password": "$2a$10$tS9xaV/iRTumxdUZEH66SecOd9sVoFt.1dn.5IBPk/PN8VWSQwqUG",
+    "permission": "USER"
+  },
+  {
+    "id": "7ef02813-242b-4f92-8ecb-f59f2d1172cd",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@mail.com",
+    "password": "$2a$10$Pcdi8bBLNeedNF3xY2u3KeJO8uALluWMh5FInSqxI7KZW55gVd42G",
+    "permission": "ADMIN"
+  }
 ]

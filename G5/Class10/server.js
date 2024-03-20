@@ -1,7 +1,10 @@
 import express from "express";
+import dotenv from "dotenv";
 
 import authRouter from "./routes/auth.js";
 import ticketRouter from "./routes/ticket.js";
+
+dotenv.config(); // to be able to read env variables
 
 const app = express();
 const PORT = 3000;
