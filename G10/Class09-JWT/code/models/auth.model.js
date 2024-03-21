@@ -11,49 +11,91 @@ const usersPath = path.join(filePathDirectory, "..", "data", "users.json");
 
 export default class AuthModel {
   static async getAll() {
-    return DataService.readData(usersPath);
+    return await DataService.readData(usersPath);
   }
 
   static async getById(id) {
     const users = await DataService.readData(usersPath);
     const foundUser = users.find((user) => user.id === id);
     if (!foundUser) {
-      throw new Error("User not found");
+      throw new Error("Product not found");
     }
     return foundUser;
   }
 
   static async registerUser(userData) {
-    const users = this.getAll();
+    const users = await this.getAll();
     const { email, password, role } = userData;
-    const userExists = users.some((user) => user.email === email);
+    const userExists = users.some((user) => user.email === userData.email);
     if (userExists) {
-      throw new Error(`The user with email ${email} already exists`);
+      throw new Error(`User with email: ${email} already exists.`);
     }
     const hashedPassword = await bcrypt.hash(password, 8);
 
     const user = new User(email, hashedPassword, role);
-    const { password: userPassword, ...userWithoutPassword } = user;
-    // delete user.password to delete a property from an object
     users.push(user);
     await DataService.writeData(usersPath, users);
+    //Remove hashed password from user object
+    // delete user.password - use delete to remove a property from an object
+    const { password: userPassword, ...userWithoutPassword } = user; // extract the user without the password with destructuring
     return userWithoutPassword;
   }
 
   static async loginUser(credentials) {
     const users = await this.getAll();
-    // const email = credentials.email;
-    // const password = credentials.password;
     const { email, password } = credentials;
     const foundUser = users.find((user) => user.email === email);
     if (!foundUser) {
-      throw new Error("Invalid credentials");
+      throw new Error("Invalid Credentials");
     }
-    const isPassworValid = await bcrypt.compare(password, foundUser.password);
-    if (!isPassworValid) {
-      throw new Error("Invalid credentials");
+    const isPasswordValid = await bcrypt.compare(password, foundUser.password);
+    if (!isPasswordValid) {
+      throw new Error("Invalid Credentials");
     }
-    delete foundUser.password;
-    return foundUser;
+    //Remove hashed password from user object
+    // delete foundUser.password;
+    const { password: hashedPassword, ...userWithoutPassword } = foundUser;
+
+    return userWithoutPassword;
+  }
+
+  static async saveRefreshToken(userId, refreshToken) {
+    const users = await this.getAll();
+
+    const updatedUsers = users.map((user) => {
+      if (user.id === userId) {
+        // Initialize refreshTokens array if it doesn't exist
+        if (!user.refreshTokens) {
+          user.refreshTokens = [];
+        }
+        user.refreshTokens.push(refreshToken);
+        console.log(user.refreshTokens);
+        return user;
+      }
+      return user;
+    });
+
+    await DataService.writeData(usersPath, updatedUsers);
+  }
+
+  static async deleteRefreshToken(userId, refreshToken) {
+    const users = await this.getAll();
+
+    const updatedUsers = users.map((user) => {
+      if (user.id === userId) {
+        //Used for removing all refresh tokens
+        // user.refreshTokens = [];
+
+        // remove only the specific refresh token
+        user.refreshTokens = user.refreshTokens.filter((token) => {
+          if (token !== refreshToken) return true;
+          return false;
+        });
+        return user;
+      }
+      return user;
+    });
+
+    await DataService.writeData(usersPath, updatedUsers);
   }
 }

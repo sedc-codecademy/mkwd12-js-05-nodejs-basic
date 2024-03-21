@@ -14,6 +14,6 @@ router.post('', ProductController.createProduct); // Create a new product
 router.put('/:id', ProductController.updateProduct); // Update a product
 router.patch('/:id/price', ProductController.updateProductPrice); // Update a product price
 router.delete('/:id', ProductController.deleteProduct); // Delete a product
-router.delete('', ProductController.deleteAllProducts);
+router.delete('', ProductController.deleteAllProducts); // Delete all products
 
 export default router;
