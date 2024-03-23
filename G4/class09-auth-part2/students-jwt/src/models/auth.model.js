@@ -15,6 +15,7 @@ const userSchema = Joi.object({
 
 class User {
   id = uuid();
+  refreshTokens = [];
 
   constructor(firstName, lastName, email, password) {
     this.firstName = firstName;
@@ -33,6 +34,16 @@ export class AuthModel {
     const users = await DataService.readJSONFile(USERS_PATH);
 
     return users;
+  }
+
+  static async getUserById(userId) {
+    const users = await this.getAllUsers();
+
+    const foundUser = users.find(user => user.id === userId);
+
+    if (!foundUser) throw new Error("User not found");
+
+    return foundUser;
   }
 
   //1. Register user
@@ -61,7 +72,11 @@ export class AuthModel {
     // delete newUser.password;
     // return newUser;
 
-    const { password: userPassword, ...userWithoutPassword } = newUser;
+    const {
+      password: userPassword,
+      refreshTokens,
+      ...userWithoutPassword
+    } = newUser;
     return userWithoutPassword;
   }
 
@@ -77,7 +92,63 @@ export class AuthModel {
 
     if (!isPasswordValid) throw new Error("Invalid Credentials!");
 
-    const { password: userPassword, ...userWithoutPassword } = foundUser;
+    const {
+      password: userPassword,
+      refreshTokens,
+      ...userWithoutPassword
+    } = foundUser;
     return userWithoutPassword;
+  }
+
+  static async saveRefreshToken(userId, refreshToken) {
+    const users = await this.getAllUsers();
+
+    const updatedUsers = users.map(user => {
+      if (user.id === userId) {
+        // return {
+        //   ...user,
+        //   refreshTokens: [...user.refreshTokens, refreshToken],
+        // };
+
+        user.refreshTokens.push(refreshToken);
+        return user;
+      } else {
+        return user;
+      }
+    });
+
+    await this.saveUsers(updatedUsers);
+  }
+
+  static async deleteRefreshToken(userId, refreshToken) {
+    const users = await this.getAllUsers();
+
+    const updatedUsers = users.map(user => {
+      if (user.id === userId) {
+        user.refreshTokens = user.refreshTokens.filter(
+          token => token !== refreshToken
+        );
+        return user;
+      } else {
+        return user;
+      }
+    });
+
+    await this.saveUsers(updatedUsers);
+  }
+
+  static async deleteAllRefreshTokens(userId) {
+    const users = await this.getAllUsers();
+
+    const updatedUsers = users.map(user => {
+      if (user.id === userId) {
+        user.refreshTokens = [];
+        return user;
+      } else {
+        return user;
+      }
+    });
+
+    await this.saveUsers(updatedUsers);
   }
 }
